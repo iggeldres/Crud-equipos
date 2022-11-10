@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Eliminar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="productoAct">
+    <ion-img [src]="productoAct.imagen"></ion-img>
+    <ion-card-header>
+      <ion-card-title>
+        {{ productoAct.nombre }}
+      </ion-card-title>
+      <ion-card-subtitle>
+        {{ productoAct.abreviatura }}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item-divider></ion-item-divider>
+      <ion-label>
+        {{ productoAct.pais }}
+      </ion-label>
+      <ion-label>
+        {{ productoAct.region }}
+      </ion-label>
+      <ion-label>
+        <ion-chip [color]="productoAct.stock<15?'danger':'primary'">Stock actual : {{productoAct.stock}}</ion-chip>
+      </ion-label>
+    </ion-card-content>
+    <ion-card-content style="display: flex; justify-content: space-between;">
+      <ion-button [routerLink]="['']" color="primary">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="danger" (click)="borrar()">
+        <ion-icon name="trash-bin-outline"></ion-icon>
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

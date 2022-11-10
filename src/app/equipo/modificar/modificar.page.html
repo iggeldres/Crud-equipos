@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Modificar</ion-title>
+    <ion-button [routerLink]="['']">volver</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  Formulario valido = {{ formulario.valid }}
+  <form [formGroup]="formulario" novalidate (ngSubmit)="modi()" >
+    <ion-item>
+      <ion-label>Imagen</ion-label>
+      <ion-input [disabled]="imgC" (change)="cargarFoto($event)" type="file" formControlName="imagen"></ion-input>
+      <ion-note
+      slot="error"
+        *ngIf="campo('imagen').invalid  && campo('imagen').errors && campo('imagen').errors.required && fueTocado('imagen') "
+      >
+        Este campo es requerido
+      </ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" formControlName="nombre"></ion-input>
+        <ion-note
+        slot="error"
+          *ngIf="campo('nombre').invalid  && campo('nombre').errors && campo('nombre').errors.required && fueTocado('nombre') ">
+          Este campo es requerido
+        </ion-note>
+        <ion-note
+        slot="error"
+          *ngIf="campo('nombre').invalid  && campo('nombre').errors && campo('nombre').errors.maxlength && fueTocado('nombre') ">
+          Los caracteres maximos son 20
+        </ion-note>
+        <ion-note
+        slot="error"
+          *ngIf="campo('nombre').invalid  && campo('nombre').errors && campo('nombre').errors.minlength && fueTocado('nombre') "
+        >
+          Los caracteres minimo son 3
+        </ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">abreviatura</ion-label>
+        <ion-input type="text" formControlName="abreviatura"></ion-input>
+        <ion-note
+        slot="error"
+        *ngIf="campo('abreviatura').invalid && campo('abreviatura').errors && campo('abreviatura').errors.required && fueTocado('abreviatura')"
+      >Este campo es requerido</ion-note>
+      <ion-note
+      slot="error"
+        *ngIf="campo('abreviatura').invalid  && campo('abreviatura').errors && campo('abreviatura').errors.maxlength && fueTocado('abreviatura') "
+      >
+        Los caracteres maximos son 8
+      </ion-note>
+        <ion-note
+        slot="error"
+        *ngIf="campo('abreviatura').invalid && campo('abreviatura').errors && campo('abreviatura').errors.minlength && fueTocado('abreviatura')"
+      >Largo minimo 2</ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">pais</ion-label>
+        <ion-input type="text" formControlName="pais"></ion-input>
+        <ion-note
+        slot="error"
+        *ngIf="campo('pais').invalid && campo('pais').errors && campo('pais').errors.required && fueTocado('pais')"
+      >Este campo es requerido</ion-note>
+      <ion-note
+      slot="error"
+        *ngIf="campo('pais').invalid  && campo('pais').errors && campo('pais').errors.maxlength && fueTocado('pais') "
+      >
+        Los caracteres maximos son 30
+      </ion-note>
+        <ion-note
+        slot="error"
+        *ngIf="campo('pais').invalid && campo('pais').errors && campo('pais').errors.minlength && fueTocado('pais')"
+      >Largo minimo 3</ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">region</ion-label>
+        <ion-input type="text" formControlName="region"></ion-input>
+        <ion-note
+        slot="error"
+        *ngIf="campo('region').invalid && campo('region').errors && campo('region').errors.required && fueTocado('region')"
+      >Este campo es requerido</ion-note>
+      <ion-note
+      slot="error"
+        *ngIf="campo('region').invalid  && campo('region').errors && campo('region').errors.maxlength && fueTocado('region') "
+      >
+        Los caracteres maximos son 30
+      </ion-note>
+        <ion-note
+        slot="error"
+        *ngIf="campo('region').invalid && campo('region').errors && campo('region').errors.minlength && fueTocado('region')"
+      >Largo minimo 3</ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">stock</ion-label>
+        <ion-input type="number" formControlName="stock"></ion-input>
+        <ion-note
+          slot="error"
+          *ngIf="campo('stock').invalid && campo('stock').errors && campo('stock').errors.required && fueTocado('stock')"
+        >Este campo es requerido</ion-note>
+        <ion-note
+          slot="error"
+          *ngIf="campo('stock').invalid && campo('stock').errors && campo('stock').errors.minlength && fueTocado('stock')"
+        >El valor minimo es 1</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-button
+          [disabled]="formulario.invalid || imgC"
+          type="submit">
+          Guardar
+        </ion-button>
+      </ion-item>
+
+  </form>
+</ion-content>

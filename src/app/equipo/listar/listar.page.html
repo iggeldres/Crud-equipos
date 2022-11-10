@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>listar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button [routerLink]="['agregar']">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+<ion-card *ngFor="let pro of equipos">
+  <ion-img [src]="pro.imagen"></ion-img>
+  <ion-card-header>
+    <ion-card-title>
+      {{ pro.nombre }}
+    </ion-card-title>
+    <ion-card-title>
+      {{ pro.abreviatura }}
+    </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+
+    <ion-item-divider></ion-item-divider>
+    <ion-label>
+      {{ pro.pais }}
+    </ion-label>
+    <ion-label>
+      {{ pro.region }}
+    </ion-label>
+    <ion-label
+
+    >
+      <ion-chip
+        [color]="pro.stock<15?'danger':'primary'"
+      >Stock actual : {{pro.stock}}</ion-chip>
+    </ion-label>
+  </ion-card-content>
+  <ion-card-content style="display: flex; justify-content: space-between;">
+    <ion-button [routerLink]="['eliminar',pro.id]" color="danger">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+    <ion-button [routerLink]="['modificar', pro.id]" >
+      <ion-icon name="pencil-outline"></ion-icon>
+    </ion-button>
+  </ion-card-content>
+</ion-card>
+
+<ion-infinite-scroll (ionInfinite)="cargarMasDatos()">
+  <ion-infinite-scroll-content loadingText="Cargando mas datos...">
+
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>
